@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- EDITABLE: You can change the title of your website here -->
+    <title>Shubham Goyal | Financial & ESG Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            --primary-color: #101820; /* Deep, dark blue */
+            --secondary-color: #1a2632;
+            --accent-color: #4CAF50; /* Professional green for ESG/positive growth */
+            --highlight-color: #E0C56E; /* Muted gold for highlights */
+            --text-color: #EAEAEA;
+            --text-muted: #a0a0a0;
+            --glass-bg: rgba(26, 38, 50, 0.6);
+            --border-color: rgba(76, 175, 80, 0.2);
+            --shadow-color: rgba(0, 0,0, 0.2);
+            --font-family-main: 'Poppins', sans-serif;
+            --font-family-alt: 'Inter', sans-serif;
+        }
+
+        /* Universal Box Sizing */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-family-main);
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            margin: 0;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='0.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a9 9 0 1 1-6.219-8.56'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='0.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='20' x2='12' y2='10'/%3E%3Cline x1='18' y1='20' x2='18' y2='4'/%3E%3Cline x1='6' y1='20' x2='6' y2='16'/%3E%3C/svg%3E");
+            background-position: 10% 20%, 80% 80%;
+            background-repeat: no-repeat;
+            background-size: 200px, 150px;
+            background-attachment: fixed;
+        }
+
+        body.light-mode {
+            --primary-color: #F5F7FA;
+            --secondary-color: #FFFFFF;
+            --accent-color: #2E7D32;
+            --highlight-color: #B59410;
+            --text-color: #1C1E21;
+            --text-muted: #555;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --border-color: rgba(46, 125, 50, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode {
+             background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%232E7D32' stroke-width='0.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a9 9 0 1 1-6.219-8.56'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24' fill='none' stroke='%232E7D32' stroke-width='0.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='20' x2='12' y2='10'/%3E%3Cline x1='18' y1='20' x2='18' y2='4'/%3E%3Cline x1='6' y1='20' x2='6' y2='16'/%3E%3C/svg%3E");
+        }
+
+        /* Reusable Components */
+        .container { width: 90%; max-width: 1200px; margin: auto; }
+        .section { padding: 80px 0; opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .section.visible { opacity: 1; transform: translateY(0); }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; font-weight: 600; position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--accent-color); border-radius: 2px; }
+        .glass-card { background: var(--glass-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid var(--border-color); padding: 30px; box-shadow: 0 8px 32px 0 var(--shadow-color); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .glass-card:hover { transform: translateY(-10px); box-shadow: 0 12px 40px 0 var(--shadow-color); }
+
+        /* Header and Navbar */
+        .header { position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; padding: 15px 0; background: rgba(16, 24, 32, 0.5); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); transition: background-color 0.3s ease; }
+        body.light-mode .header { background: rgba(245, 247, 250, 0.5); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--text-color); text-decoration: none; }
+        .logo span { color: var(--accent-color); }
+        .nav-links { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0;}
+        .nav-links a { color: var(--text-color); text-decoration: none; font-weight: 400; transition: color 0.3s ease; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--accent-color); transition: width 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-color); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-actions { display: flex; align-items: center; gap: 20px; }
+        .dark-mode-toggle { cursor: pointer; font-size: 1.5rem; }
+
+        /* Hero Section - FIXED */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            /* This padding pushes the content down to prevent overlap with the fixed header */
+            padding-top: 80px; 
+        }
+        .hero-container { display: flex; align-items: center; justify-content: space-between; gap: 40px; width: 100%;}
+        .hero-content { z-index: 1; flex: 1; }
+        .hero-content h1 { font-size: 3.5rem; margin: 0 0 10px; font-weight: 700; }
+        .hero-content h1 span { color: var(--accent-color); }
+        .hero-content p { font-size: 1.2rem; margin: 20px 0 30px; max-width: 600px; color: var(--text-muted); }
+        .hero-button { padding: 15px 30px; background: var(--accent-color); color: #fff; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 1rem; text-decoration: none; transition: all 0.3s ease; }
+        .hero-button:hover { background-color: var(--highlight-color); transform: scale(1.05); }
+        .hero-visual { flex: 1; display: flex; justify-content: center; align-items: center; }
+        .candlestick-chart { width: 100%; max-width: 450px; filter: drop-shadow(0 0 15px var(--shadow-color)); }
+        .candlestick-chart .grid { stroke: var(--border-color); stroke-width: 0.5; }
+        .candlestick-chart .wick { stroke: var(--text-muted); stroke-width: 1.5; }
+        .candlestick-chart .candle.up { fill: var(--accent-color); }
+        .candlestick-chart .candle.down { fill: #E53935; }
+
+        /* Services Section */
+        #services .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { text-align: left; }
+        .service-icon { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px; background-color: var(--border-color); padding: 10px; border-radius: 50%; display: inline-block; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--highlight-color); }
+        .service-card p { color: var(--text-muted); }
+
+        /* Projects Section */
+        #projects .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .project-card { background: var(--glass-bg); border-radius: 15px; overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 12px 40px 0 var(--shadow-color); }
+        .project-image img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .project-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .project-content h3 { margin-top: 0; font-size: 1.4rem; color: var(--highlight-color); }
+        .project-content p { color: var(--text-muted); margin-bottom: 20px; flex-grow: 1;}
+        .project-link { color: var(--accent-color); text-decoration: none; font-weight: 600; align-self: flex-start; }
+        .project-link:hover { text-decoration: underline; }
+
+        /* About Section */
+        #about .about-content { display: flex; align-items: center; gap: 50px; }
+        #about .about-text { flex-basis: 50%; }
+        #about .spreadsheet-container { flex-basis: 50%; }
+        .spreadsheet { border: 1px solid #3a4a5a; border-radius: 8px; overflow: hidden; background-color: var(--secondary-color); box-shadow: 0 10px 30px var(--shadow-color); }
+        .spreadsheet table { width: 100%; border-collapse: collapse; font-family: var(--font-family-alt); }
+        .spreadsheet th, .spreadsheet td { padding: 10px 12px; border: 1px solid #3a4a5a; text-align: left; font-size: 0.9rem; }
+        .spreadsheet thead th { background-color: #2c3a47; color: var(--text-color); font-weight: 600; }
+        .spreadsheet tbody tr:nth-child(even) { background-color: var(--primary-color); }
+        .spreadsheet td.positive { color: #4CAF50; }
+        .spreadsheet td.negative { color: #f44336; }
+        .spreadsheet td.highlight { background-color: rgba(224, 197, 110, 0.1); font-weight: 500; }
+
+        /* Contact Section */
+        #contact .contact-container { text-align: center; }
+        #contact p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; }
+        .contact-links { display: flex; justify-content: center; align-items: center; gap: 40px; }
+        .contact-link { color: var(--text-color); text-decoration: none; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; padding: 10px 20px; border: 1px solid var(--border-color); border-radius: 8px; transition: all 0.3s ease; }
+        .contact-link:hover { background-color: var(--accent-color); color: white; border-color: var(--accent-color); transform: translateY(-5px); }
+        .contact-link svg { width: 24px; height: 24px; }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-container { flex-direction: column; text-align: center; }
+            .hero-content { order: 2; }
+            .hero-visual { order: 1; margin-bottom: 30px; }
+            .hero-content h1 { font-size: 2.8rem; }
+            #about .about-content { flex-direction: column; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            #home { min-height: auto; padding-bottom: 60px; }
+            .hero-content h1 { font-size: 2.2rem; }
+            #about .spreadsheet-container { transform: scale(0.9); margin-left: -5%; }
+            .contact-links { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="website-view">
+        <header class="header">
+            <div class="container navbar">
+                <a href="#home" class="logo">Shubham <span>Goyal</span></a>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home" class="active">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-actions">
+                    <div class="dark-mode-toggle" id="darkModeToggle" title="Toggle Dark/Light Mode">🌙</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1>Data-Driven Insights for <span>Smarter Investments</span></h1>
+                    <p>Providing meticulous Equity Research, Financial Planning & Analysis (FP&A), and integrated ESG assessment to navigate complex markets.</p>
+                    <a href="#services" class="hero-button">Discover My Expertise</a>
+                </div>
+                <div class="hero-visual">
+                    <svg class="candlestick-chart" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+                        <g class="grid"><line x1="0" y1="30" x2="200" y2="30"></line><line x1="0" y1="60" x2="200" y2="60"></line><line x1="0" y1="90" x2="200" y2="90"></line></g>
+                        <line class="wick" x1="25" y1="40" x2="25" y2="80"></line><rect class="candle up" x="20" y="50" width="10" height="20" rx="1"></rect>
+                        <line class="wick" x1="55" y1="20" x2="55" y2="70"></line><rect class="candle down" x="50" y="30" width="10" height="30" rx="1"></rect>
+                        <line class="wick" x1="85" y1="55" x2="85" y2="95"></line><rect class="candle up" x="80" y="65" width="10" height="20" rx="1"></rect>
+                        <line class="wick" x1="115" y1="45" x2="115" y2="65"></line><rect class="candle down" x="110" y="50" width="10" height="10" rx="1"></rect>
+                        <line class="wick" x1="145" y1="10" x2="145" y2="60"></line><rect class="candle up" x="140" y="20" width="10" height="30" rx="1"></rect>
+                        <line class="wick" x1="175" y1="25" x2="175" y2="45"></line><rect class="candle up" x="170" y="30" width="10" height="10" rx="1"></rect>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title">Core Competencies</h2>
+                <div class="services-grid">
+                    <div class="glass-card service-card"><div class="service-icon">📈</div><h3>Equity Research & Valuation</h3><p>In-depth analysis of public companies, including financial modeling (DCF, Comps), competitive landscape assessment, and deriving actionable investment theses.</p></div>
+                    <div class="glass-card service-card"><div class="service-icon">📊</div><h3>Financial Planning & Analysis (FP&A)</h3><p>Strategic financial guidance through comprehensive budgeting, forecasting, variance analysis, and performance reporting to support key business decisions.</p></div>
+                    <div class="glass-card service-card"><div class="service-icon">🌱</div><h3>ESG Integration & Research</h3><p>Evaluating Environmental, Social, and Governance factors to identify risks and opportunities, ensuring sustainable and responsible investment strategies.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects & Analysis</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image"><img src="https://via.placeholder.com/400x250/1a2632/E0C56E?text=M%26M+Report" alt="Image of Mahindra & Mahindra Equity Research Report"></div>
+                        <div class="project-content">
+                            <h3>Equity Research Report: M&M</h3>
+                            <p>A detailed equity research report evaluating the financial health, market position, and future outlook of Mahindra & Mahindra.</p>
+                            <a href="https://www.linkedin.com/posts/isgoyal_mm-shubham-goyal-activity-7286665243156533248-pTHP" target="_blank" class="project-link">View on LinkedIn →</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image"><img src="https://via.placeholder.com/400x250/1a2632/4CAF50?text=DMart+Analysis" alt="Image of DMart DuPont Analysis"></div>
+                        <div class="project-content">
+                            <h3>DMart: A DuPont Analysis</h3>
+                            <p>An in-depth financial breakdown of Avenue Supermarts (DMart) using the DuPont framework to analyze its return on equity (ROE).</p>
+                            <a href="https://www.linkedin.com/posts/isgoyal_dmart-using-dupont-analysis-activity-7077891958207131649-wjTO" target="_blank" class="project-link">View on LinkedIn →</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image"><img src="https://via.placeholder.com/400x250/1a2632/FFFFFF?text=DMart+Model" alt="Image of a financial model spreadsheet for DMart"></div>
+                        <div class="project-content">
+                            <h3>DMart Financial Valuation Model</h3>
+                            <p>A comprehensive financial model and valuation for Avenue Supermarts (DMart), showcasing forecasting and valuation techniques.</p>
+                            <a href="https://www.linkedin.com/posts/isgoyal_financial-modeling-activity-7074624010151485440-wuuK" target="_blank" class="project-link">View on LinkedIn →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">Analytical Foundation</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Commitment to Clarity and Precision</h3>
+                        <p>With a foundation in rigorous quantitative analysis and a passion for uncovering market narratives, my approach combines meticulous data examination with a broad understanding of economic trends. I believe that the best financial decisions are born from a blend of art and science—marrying robust models with qualitative insights.</p>
+                        <p>This commitment is reflected in every valuation model, research report, and strategic recommendation, aiming to provide clarity in complexity and confidence in uncertainty.</p>
+                    </div>
+                    <div class="spreadsheet-container">
+                        <div class="spreadsheet glass-card">
+                           <table>
+                                <thead><tr><th>Metric</th><th>Company A</th><th>Company B</th><th>Industry Avg.</th></tr></thead>
+                                <tbody>
+                                    <tr><td>P/E Ratio</td><td>15.2x</td><td class="highlight">12.5x</td><td>18.0x</td></tr>
+                                    <tr><td>EV/EBITDA</td><td>10.1x</td><td class="highlight">8.9x</td><td>11.5x</td></tr>
+                                    <tr><td>Revenue Growth (YoY)</td><td class="positive">12.5%</td><td>8.2%</td><td>9.5%</td></tr>
+                                    <tr><td>Net Profit Margin</td><td class="positive">18.0%</td><td>15.5%</td><td>16.0%</td></tr>
+                                    <tr><td>ESG Score</td><td class="positive">85/100</td><td class="negative">62/100</td><td>70/100</td></tr>
+                                </tbody>
+                           </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container contact-container">
+                <h2 class="section-title">Connect With Me</h2>
+                <p>Open to discussing market trends, collaboration opportunities, or detailed analytical projects.</p>
+                <div class="contact-links">
+                    <a href="mailto:shubhamgoyal.0027@gmail.com" class="contact-link">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/isgoyal/" target="_blank" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-11 6H5v7h3V9zm-1.5-2.25a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM18 9h-2.5c-2 0-2.5 1-2.5 2.5V16h-3v-7h3v1.25c.5-.75 1.5-1.25 2.5-1.25H18v7h-3v-4c0-.5 0-1 .5-1s1 .5 1 1v3h3V9z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Dark Mode Toggle ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            darkModeToggle.textContent = body.classList.contains('light-mode') ? '☀️' : '🌙';
+        });
+
+        // --- Scroll Reveal Animation ---
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+        
+        // --- Active Nav Link on Scroll ---
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const allSections = document.querySelectorAll('section[id]');
+        const headerOffset = 80; // Height of the fixed header
+        window.addEventListener('scroll', () => {
+            let current = '';
+            allSections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - headerOffset) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const linkHref = link.getAttribute('href');
+                if (linkHref && linkHref.includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
