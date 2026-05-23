@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html class="dark scroll-smooth" lang="en">
+<head>
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>S.GOYAL. - AI &amp; ESG Portfolio</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&amp;family=JetBrains+Mono:wght@400;600&amp;family=Public+Sans:wght@300;400;600;800;900&amp;family=Syne:wght@800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: "#030712",
+                        primary: "#06b6d4",    /* Cyan */
+                        secondary: "#10b981",  /* Emerald */
+                        tertiary: "#8b5cf6"    /* Violet */
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Syne", "sans-serif"],
+                        display: ["Public Sans", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                        label: ["JetBrains Mono", "monospace"]
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'shimmer': 'shimmer 3s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%, 100%': { transform: 'translate(0px, 0px) scale(1)', opacity: '0.2' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)', opacity: '0.3' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)', opacity: '0.15' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '200% center' },
+                            '100%': { backgroundPosition: '-200% center' }
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #030712; /* Obsidian */
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        
+        /* Grid Overlay */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .glass-btn-hover:hover {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.4); /* Cyan glow */
+            border-color: rgba(6, 182, 212, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* Text Gradients */
+        .text-gradient-shimmer {
+            background: linear-gradient(
+                to right,
+                #06b6d4, /* Cyan */
+                #10b981, /* Emerald */
+                #8b5cf6, /* Violet */
+                #06b6d4  /* Cyan */
+            );
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+        
+        /* Typewriter Cursor */
+        .typewriter-cursor {
+            border-right: 2px solid #06b6d4;
+            animation: blink 0.75s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #06b6d4; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    
+    /* Additional custom animations */
+    .progress-bar-fill {
+        transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .timeline-dot {
+        box-shadow: 0 0 15px currentColor;
+    }
+    .code-editor-btn.active {
+        background-color: rgba(6, 182, 212, 0.1);
+        border-color: rgba(6, 182, 212, 0.3);
+        color: #06b6d4;
+    }
+    /* SVG Dupont lines glow */
+    .dupont-svg-line {
+        stroke-dasharray: 8;
+        animation: svgDash 30s linear infinite;
+    }
+    @keyframes svgDash {
+        to {
+            stroke-dashoffset: -1000;
+        }
+    }
+
+    </style>
+
+</head>
+<body class="text-gray-300 font-body relative min-h-screen overflow-x-hidden antialiased bg-[#030712]">
+
+<!-- Ambient Glow Effects (Animated Blobs & Grid Overlay from file 1) -->
+<div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-emerald-500/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[45rem] h-[45rem] bg-cyan-500/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-2000"></div>
+    <div class="absolute top-[30%] left-[30%] w-[35rem] h-[35rem] bg-violet-500/10 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-4000"></div>
+    <canvas class="absolute inset-0 z-0" id="particleCanvas"></canvas>
+    <div class="absolute inset-0 z-0 bg-grid pointer-events-none" style="
+        background-size: 50px 50px;
+        background-image: 
+            linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    "></div>
+</div>
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#030712]/40 backdrop-blur-xl border-b border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] transition-all duration-300">
+    <div class="flex justify-between items-center px-8 h-20 max-w-7xl mx-auto">
+        <a class="text-xl font-black tracking-tighter text-cyan-500 hover:text-cyan-300 transition-colors duration-300 font-display" href="#about">S.GOYAL.</a>
+        <div class="hidden md:flex items-center gap-8 font-display font-extrabold tracking-tighter text-sm uppercase">
+            <a class="text-cyan-500 hover:text-cyan-300 transition-colors duration-300 border-b-2 border-cyan-500 pb-1" href="#about" id="nav-about">About</a>
+            <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#pivot" id="nav-pivot">Career Pivot</a>
+            <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#agents" id="nav-agents">AI Agents</a>
+            <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#dupont" id="nav-dupont">DuPont Lab</a>
+            <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#carbon-estimator" id="nav-carbon">Carbon Lab</a>
+            <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#projects" id="nav-projects">Projects</a>
+            <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#vault" id="nav-vault">Script Vault</a>
+            <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#experience" id="nav-experience">Experience</a>
+            <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#arsenal" id="nav-arsenal">Skills</a>
+            <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#contact" id="nav-contact">Contact</a>
+        </div>
+        <a class="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full border border-secondary/50 bg-[#030712]/40 backdrop-blur-md text-secondary text-sm font-label hover:bg-secondary/10 hover:border-secondary hover:scale-105 transition-all duration-300" href="SG resume.pdf" download>
+            <span class="material-symbols-outlined" style="font-size: 18px;">download</span>
+            Resume
+        </a>
+        <button class="md:hidden text-gray-300 hover:text-cyan-400 transition-colors" id="mobile-menu-toggle">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </div>
+    <!-- Mobile Navigation Dropdown -->
+    <div class="hidden md:hidden bg-[#030712]/95 backdrop-blur-2xl border-b border-white/5 px-8 py-6 space-y-4 font-display font-extrabold tracking-tighter text-sm uppercase" id="mobile-menu-dropdown">
+        <a class="block text-gray-300 hover:text-cyan-400" href="#about">About</a>
+        <a class="block text-gray-300 hover:text-cyan-400" href="#pivot">Career Pivot</a>
+        <a class="block text-gray-300 hover:text-cyan-400" href="#agents">AI Agents</a>
+        <a class="block text-gray-300 hover:text-cyan-400" href="#dupont">DuPont Lab</a>
+        <a class="block text-gray-300 hover:text-cyan-400" href="#carbon-estimator">Carbon Lab</a>
+        <a class="block text-gray-300 hover:text-cyan-400" href="#projects">Projects</a>
+        <a class="block text-gray-300 hover:text-cyan-400" href="#vault">Script Vault</a>
+        <a class="block text-gray-300 hover:text-cyan-400" href="#experience">Experience</a>
+        <a class="block text-gray-300 hover:text-cyan-400" href="#arsenal">Skills</a>
+        <a class="block text-gray-300 hover:text-cyan-400" href="#contact">Contact</a>
+        <a class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-secondary/50 text-secondary text-xs font-label hover:bg-secondary/10 w-full justify-center" href="SG resume.pdf" download>
+            <span class="material-symbols-outlined" style="font-size: 14px;">download</span>
+            Resume
+        </a>
+    </div>
+</nav>
+
+<main class="relative z-10 pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-32">
+
+    <!-- HERO SECTION (from file 1) -->
+    <section class="flex flex-col items-center text-center space-y-8 pt-12 animate-on-scroll" id="about">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border-white/10 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+            <span class="w-2 h-2 rounded-full bg-violet-500 animate-pulse"></span>
+            <span class="text-xs font-label tracking-wide text-gray-300">AI Power User • Automation Operator • Finance</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-headline tracking-tighter leading-tight font-extrabold text-white">
+            Shubham <span class="text-gradient">Goyal</span>
+        </h1>
+        <p class="text-lg md:text-2xl text-gray-400 font-body max-w-2xl font-light leading-relaxed">
+            I build custom AI agents, automated pipelines, and financial models using 
+            <span class="font-label text-primary font-semibold typewriter-cursor ml-1" id="typewriter"></span>
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 pt-4">
+            <a class="bg-cyan-500 hover:bg-cyan-400 text-gray-950 font-bold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-[0_0_15px_rgba(6,182,212,0.4)]" href="#agents">
+                <span class="material-symbols-outlined">terminal</span>
+                Run AI Console
+            </a>
+            <a class="glass-panel text-white hover:text-cyan-400 py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2" href="#dupont">
+                <span class="material-symbols-outlined">science</span>
+                Open DuPont Lab
+            </a>
+            <a class="glass-panel text-white hover:text-secondary py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2" href="SG resume.pdf" download>
+                <span class="material-symbols-outlined">description</span>
+                Get Resume
+            </a>
+        </div>
+        
+        <!-- Stats Ribbon (from file 1) -->
+        <div class="w-full max-w-5xl mx-auto mt-24">
+            <div class="glass-panel rounded-xl p-8 flex flex-wrap justify-center gap-8 md:gap-16 border-t border-white/5 relative overflow-hidden">
+                <div class="flex flex-col items-center justify-center space-y-2 relative z-10 group">
+                    <span class="text-4xl font-headline font-bold text-gray-100 group-hover:text-primary transition-colors duration-300 flex items-center">
+                        <span class="stat-number" data-target="700">0</span>+
+                    </span>
+                    <span class="text-xs font-label text-gray-400 uppercase tracking-widest">Equities Modeled</span>
+                </div>
+                <div class="hidden md:block w-px h-12 bg-white/10 self-center"></div>
+                <div class="flex flex-col items-center justify-center space-y-2 relative z-10 group">
+                    <span class="text-4xl font-headline font-bold text-gray-100 group-hover:text-secondary transition-colors duration-300 flex items-center">
+                        <span class="stat-number" data-target="95">0</span>%
+                    </span>
+                    <span class="text-xs font-label text-gray-400 uppercase tracking-widest">Data Accuracy</span>
+                </div>
+                <div class="hidden md:block w-px h-12 bg-white/10 self-center"></div>
+                <div class="flex flex-col items-center justify-center space-y-2 relative z-10 group">
+                    <span class="text-4xl font-headline font-bold text-gray-100 group-hover:text-tertiary transition-colors duration-300 flex items-center">
+                        <span class="stat-number" data-target="5">0</span>
+                    </span>
+                    <span class="text-xs font-label text-gray-400 uppercase tracking-widest">FTEs Saved via AI</span>
+                </div>
+                <div class="hidden md:block w-px h-12 bg-white/10 self-center"></div>
+                <div class="flex flex-col items-center justify-center space-y-2 relative z-10 group">
+                    <span class="text-4xl font-headline font-bold text-gray-100 group-hover:text-primary transition-colors duration-300 flex items-center">
+                        <span class="stat-number" data-target="40">0</span>%
+                    </span>
+                    <span class="text-xs font-label text-gray-400 uppercase tracking-widest">Query Time Reduction</span>
+                </div>
+                <div class="absolute top-2 left-3 flex gap-1.5 opacity-50">
+                    <div class="w-2 h-2 rounded-full bg-red-500/80"></div>
+                    <div class="w-2 h-2 rounded-full bg-yellow-500/80"></div>
+                    <div class="w-2 h-2 rounded-full bg-emerald-500/80"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAREER PIVOT ALIGNMENT (from file 5) -->
+    <section class="animate-on-scroll space-y-8" id="pivot">
+        <header class="text-center mb-16 max-w-3xl mx-auto">
+            <h2 class="font-headline font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tighter mb-4 text-white">
+                Career Pivot <span class="text-gradient">Alignment</span>
+            </h2>
+            <p class="font-body text-lg md:text-xl text-gray-400 font-light leading-relaxed">
+                Mapping hybrid technical automation skills to strategic roles.
+            </p>
+        </header>
+        <div class="flex flex-wrap justify-center gap-4 mb-12" id="pivot-pills">
+            <button class="px-6 py-3 rounded-full font-label font-bold text-sm tracking-wide bg-gradient-to-r from-secondary to-primary text-gray-900 shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all" data-role="automation">
+                AI Automation Specialist
+            </button>
+            <button class="px-6 py-3 rounded-full font-label font-medium text-sm tracking-wide border border-white/20 text-gray-400 hover:text-white hover:border-white/50 transition-colors glass-panel" data-role="solutions">
+                AI Solutions Consultant
+            </button>
+            <button class="px-6 py-3 rounded-full font-label font-medium text-sm tracking-wide border border-white/20 text-gray-400 hover:text-white hover:border-white/50 transition-colors glass-panel" data-role="esg">
+                Quantitative ESG Analyst
+            </button>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+            <div class="glass-panel p-8 rounded-xl flex flex-col justify-center relative overflow-hidden group">
+                <div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-700"></div>
+                <h3 class="font-headline text-2xl font-bold text-white mb-6 relative z-10" id="pivot-title">AI Automation Specialist</h3>
+                <p class="font-body text-gray-400 leading-relaxed mb-8 relative z-10 h-36 overflow-y-auto" id="pivot-desc">
+                    Bridging the gap between conceptual AI and operational reality. Specializing in architecting custom autonomous agents, designing resilient data pipelines, and integrating LLMs into existing enterprise workflows to eliminate redundant tasks and accelerate strategic decision-making.
+                </p>
+                <div class="mt-auto relative z-10">
+                    <a class="group inline-flex items-center space-x-2 text-primary font-label font-bold uppercase tracking-wider text-sm hover:text-white transition-colors" href="#projects" id="pivot-link">
+                        <span>View Projects</span>
+                        <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+            <div class="glass-panel p-8 rounded-xl space-y-8 flex flex-col justify-center">
+                <div>
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="font-mono text-sm text-gray-300" id="skill-1-name">Agent Orchestration (LLMs/RAG)</span>
+                        <span class="font-mono text-xs text-primary font-bold" id="skill-1-val">90%</span>
+                    </div>
+                    <div class="h-2 w-full bg-gray-900 rounded-full overflow-hidden border border-white/5">
+                        <div class="h-full bg-gradient-to-r from-secondary to-primary rounded-full w-[90%] shadow-[0_0_10px_rgba(6,182,212,0.5)] progress-bar-fill" id="skill-1-bar"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="font-mono text-sm text-gray-300" id="skill-2-name">Workflow Automation &amp; Python Scripting</span>
+                        <span class="font-mono text-xs text-primary font-bold" id="skill-2-val">85%</span>
+                    </div>
+                    <div class="h-2 w-full bg-gray-900 rounded-full overflow-hidden border border-white/5">
+                        <div class="h-full bg-gradient-to-r from-secondary to-primary rounded-full w-[85%] shadow-[0_0_10px_rgba(6,182,212,0.5)] progress-bar-fill" id="skill-2-bar"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="font-mono text-sm text-gray-300" id="skill-3-name">Data Wrangling &amp; Extraction</span>
+                        <span class="font-mono text-xs text-primary font-bold" id="skill-3-val">95%</span>
+                    </div>
+                    <div class="h-2 w-full bg-gray-900 rounded-full overflow-hidden border border-white/5">
+                        <div class="h-full bg-gradient-to-r from-secondary to-primary rounded-full w-[95%] shadow-[0_0_10px_rgba(6,182,212,0.5)] progress-bar-fill" id="skill-3-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE AI TERMINAL PLAYGROUND (from file 2) -->
+    <section class="animate-on-scroll space-y-8" id="agents">
+        <div class="text-center mb-16 max-w-3xl mx-auto">
+            <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white mb-6 tracking-[-0.03em] font-extrabold">
+                AI Agent <span class="text-gradient">Terminal Playground</span>
+            </h2>
+            <p class="font-body text-slate-400 text-lg md:text-xl font-light leading-relaxed">
+                Interact with virtual twins of the prompt-based agents I developed, which optimized critical S&amp;P workflows.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative">
+            <div class="lg:col-span-5 flex flex-col gap-6" id="agent-cards">
+                <div class="glass-panel p-6 relative overflow-hidden group cursor-pointer border-l-[3px] border-l-secondary bg-white/[0.02] selected" data-agent="segmap" style="--border-color: #10b981; --glow-color: rgba(16, 185, 129, 0.3);">
+                    <div class="absolute inset-0 bg-gradient-to-r from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 flex flex-col gap-3">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-headline font-bold text-xl text-white group-hover:text-secondary transition-colors">SegMap Engine</h3>
+                            <span class="bg-secondary/10 text-secondary border border-secondary/20 px-2.5 py-1 rounded-full text-xs font-mono tracking-wider">Prompt Agent</span>
+                        </div>
+                        <p class="font-body text-slate-400 text-sm leading-relaxed">Automated NAICS industry classification from company segment texts.</p>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="material-symbols-outlined text-secondary text-sm">trending_up</span>
+                            <span class="font-mono text-secondary text-xs">Saved 5 FTEs (S&amp;P Global)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-panel p-6 relative overflow-hidden group cursor-pointer" data-agent="dpm" style="--border-color: #06b6d4; --glow-color: rgba(6, 182, 212, 0.3);">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 flex flex-col gap-3">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-headline font-bold text-xl text-white group-hover:text-primary transition-colors">DPM Buddy</h3>
+                            <span class="bg-primary/10 text-primary border border-primary/20 px-2.5 py-1 rounded-full text-xs font-mono tracking-wider">Q&amp;A Chatbot</span>
+                        </div>
+                        <p class="font-body text-slate-400 text-sm leading-relaxed">AI mentor trained on complex ESG regulatory data mapping frameworks.</p>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="material-symbols-outlined text-primary text-sm">speed</span>
+                            <span class="font-mono text-primary text-xs">Cut query resolution by 40%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-panel p-6 relative overflow-hidden group cursor-pointer" data-agent="dupont" style="--border-color: #8b5cf6; --glow-color: rgba(139, 92, 246, 0.3);">
+                    <div class="absolute inset-0 bg-gradient-to-r from-tertiary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="relative z-10 flex flex-col gap-3">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-headline font-bold text-xl text-white group-hover:text-tertiary transition-colors">Dupont Excel Parser</h3>
+                            <span class="bg-tertiary/10 text-tertiary border border-tertiary/20 px-2.5 py-1 rounded-full text-xs font-mono tracking-wider">Data Pipeline</span>
+                        </div>
+                        <p class="font-body text-slate-400 text-sm leading-relaxed">Automated Excel sheet cell extraction for financial ratios mapping.</p>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="material-symbols-outlined text-tertiary text-sm">done_all</span>
+                            <span class="font-mono text-tertiary text-xs">100% manual entry bypass</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-7 bg-[#090d16] rounded-xl border border-white/5 shadow-2xl overflow-hidden flex flex-col h-full min-h-[400px]">
+                <div class="bg-[#1a1f2e] px-4 py-3 border-b border-white/5 flex items-center justify-between">
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                    </div>
+                    <span class="font-mono text-xs text-slate-400 tracking-wide">bash - shubhamgoyal@agent-sandbox</span>
+                    <div class="w-12"></div>
+                </div>
+                <div class="p-6 font-mono text-sm flex-grow overflow-y-auto min-h-[350px] flex flex-col gap-3 text-emerald-400" id="terminal-content">
+                    <!-- Logs injected dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DUPONT MODEL LAB (from file 3) -->
+    <section class="animate-on-scroll space-y-8" id="dupont">
+        <header class="text-center mb-16 max-w-3xl mx-auto">
+            <h2 class="font-headline text-4xl md:text-5xl font-extrabold tracking-[-0.03em] text-white mb-4">
+                DuPont Financial Model Lab
+            </h2>
+            <p class="font-body text-gray-400 text-lg md:text-xl leading-relaxed">
+                Adjust the sliders to dynamically compute Return on Equity (ROE) and see the visual breakdown tree update in real-time.
+            </p>
+        </header>
+        <div class="glass-panel rounded-2xl w-full p-8 md:p-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+            <div class="lg:col-span-5 flex flex-col space-y-10 justify-center">
+                <div class="control-group">
+                    <div class="flex justify-between items-center mb-3">
+                        <label class="font-label text-sm text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                            Net Profit Margin (Profitability)
+                        </label>
+                        <span class="font-label text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full text-xs border border-cyan-500/20" id="margin-val">5.0%</span>
+                    </div>
+                    <input class="w-full accent-cyan-500" id="margin-slider" max="20" min="0" step="0.1" type="range" value="5"/>
+                </div>
+                <div class="control-group">
+                    <div class="flex justify-between items-center mb-3">
+                        <label class="font-label text-sm text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-violet-500"></span>
+                            Asset Turnover (Efficiency)
+                        </label>
+                        <span class="font-label text-violet-400 bg-violet-500/10 px-3 py-1 rounded-full text-xs border border-violet-500/20" id="turnover-val">1.50x</span>
+                    </div>
+                    <input class="w-full accent-violet-500" id="turnover-slider" max="5" min="0" step="0.01" type="range" value="1.50"/>
+                </div>
+                <div class="control-group">
+                    <div class="flex justify-between items-center mb-3">
+                        <label class="font-label text-sm text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+                            Equity Multiplier (Financial Leverage)
+                        </label>
+                        <span class="font-label text-gray-300 bg-gray-500/10 px-3 py-1 rounded-full text-xs border border-gray-500/20" id="leverage-val">2.00x</span>
+                    </div>
+                    <input class="w-full accent-gray-500" id="leverage-slider" max="5" min="1" step="0.01" type="range" value="2.00"/>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-7 bg-gray-900/50 rounded-xl border border-white/5 p-8 relative flex flex-col items-center justify-center min-h-[400px]">
+                <div class="relative w-full flex flex-col items-center gap-12 z-10">
+                    <div class="bg-[#0c111d] border border-emerald-500/30 rounded-lg px-8 py-6 text-center w-64 z-20 transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.1)]" id="roe-node">
+                        <div class="font-label text-xs text-gray-400 uppercase tracking-widest mb-2">Return on Equity (ROE)</div>
+                        <div class="font-display text-4xl font-extrabold text-emerald-400" id="roe-display">15.00%</div>
+                    </div>
+                    <svg class="absolute top-[88px] left-0 w-full h-[100px] z-0 pointer-events-none" preserveAspectRatio="none">
+                        <path class="dupont-svg-line" d="M 50%,0 L 50%,20 L 16.6%,20 L 16.6%,100" fill="none" stroke="rgba(6, 182, 212, 0.3)" stroke-width="2"></path>
+                        <path class="dupont-svg-line" d="M 50%,0 L 50%,100" fill="none" stroke="rgba(139, 92, 246, 0.3)" stroke-width="2"></path>
+                        <path class="dupont-svg-line" d="M 50%,0 L 50%,20 L 83.3%,20 L 83.3%,100" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="2"></path>
+                    </svg>
+                    <div class="flex w-full justify-between items-center z-20 relative">
+                        <div class="bg-[#0c111d] border border-cyan-500/30 rounded-lg px-4 py-4 text-center w-[28%] transition-all duration-300 hover:scale-105 shadow-[0_0_10px_rgba(6,182,212,0.1)]">
+                            <div class="font-label text-[10px] text-gray-400 uppercase tracking-wider mb-1">Profit Margin</div>
+                            <div class="font-display text-xl font-bold text-cyan-400" id="node-margin">5.0%</div>
+                        </div>
+                        <div class="text-gray-600 font-display text-2xl font-light">×</div>
+                        <div class="bg-[#0c111d] border border-violet-500/30 rounded-lg px-4 py-4 text-center w-[28%] transition-all duration-300 hover:scale-105 shadow-[0_0_10px_rgba(139, 92, 246, 0.1)]">
+                            <div class="font-label text-[10px] text-gray-400 uppercase tracking-wider mb-1">Asset Turnover</div>
+                            <div class="font-display text-xl font-bold text-violet-400" id="node-turnover">1.50x</div>
+                        </div>
+                        <div class="text-gray-600 font-display text-2xl font-light">×</div>
+                        <div class="bg-[#0c111d] border border-white/10 rounded-lg px-4 py-4 text-center w-[28%] transition-all duration-300 hover:scale-105">
+                            <div class="font-label text-[10px] text-gray-400 uppercase tracking-wider mb-1">Equity Multiplier</div>
+                            <div class="font-display text-xl font-bold text-gray-300" id="node-leverage">2.00x</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/5 to-transparent pointer-events-none rounded-xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARBON ESTIMATOR (ESG Lab Module) -->
+    <section class="animate-on-scroll space-y-8" id="carbon-estimator">
+        <header class="text-center mb-16 max-w-3xl mx-auto">
+            <h2 class="font-headline text-4xl md:text-5xl font-extrabold tracking-[-0.03em] text-white mb-4">
+                GHG Carbon Estimator <span class="text-gradient">Sandbox</span>
+            </h2>
+            <p class="font-body text-gray-400 text-lg md:text-xl leading-relaxed">
+                Estimate Scope 1, 2, and 3 greenhouse gas emissions based on industry sectors and annual revenues.
+            </p>
+        </header>
+        <div class="glass-panel rounded-2xl w-full p-8 md:p-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+            <div class="lg:col-span-5 flex flex-col space-y-8 justify-center">
+                <div>
+                    <label class="block text-sm font-label text-gray-300 uppercase tracking-wider mb-3">Industry Sector</label>
+                    <select class="w-full bg-[#0c111d] border border-white/10 rounded-lg px-4 py-3 text-gray-300 focus:outline-none focus:border-emerald-500/50" id="carbon-sector">
+                        <option value="tech">Technology &amp; Communications (Low Direct)</option>
+                        <option value="energy">Energy &amp; Utilities (High Scope 1)</option>
+                        <option value="mfg">Manufacturing &amp; Industrials (High Scope 1 &amp; 3)</option>
+                        <option value="retail">Retail &amp; Consumer Goods (High Scope 3)</option>
+                    </select>
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <label class="font-label text-sm text-gray-300 uppercase tracking-wider">Annual Revenue ($ Millions)</label>
+                        <span class="font-label text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full text-xs border border-emerald-500/20" id="revenue-val">$100M</span>
+                    </div>
+                    <input class="w-full accent-emerald-500" id="revenue-slider" max="1000" min="10" step="10" type="range" value="100"/>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-7 bg-gray-900/50 rounded-xl border border-white/5 p-8 relative flex flex-col justify-center min-h-[350px]">
+                <div class="space-y-6 relative z-10 w-full">
+                    <!-- Scope 1 -->
+                    <div>
+                        <div class="flex justify-between text-xs font-label text-gray-400 mb-1.5">
+                            <span>SCOPE 1 (Direct Emissions)</span>
+                            <span class="text-white" id="scope-1-val">120 tCO2e</span>
+                        </div>
+                        <div class="h-3 w-full bg-gray-950 rounded-full overflow-hidden border border-white/5">
+                            <div class="h-full bg-emerald-500 rounded-full transition-all duration-300" id="scope-1-bar" style="width: 15%"></div>
+                        </div>
+                    </div>
+                    <!-- Scope 2 -->
+                    <div>
+                        <div class="flex justify-between text-xs font-label text-gray-400 mb-1.5">
+                            <span>SCOPE 2 (Indirect - Purchased Energy)</span>
+                            <span class="text-white" id="scope-2-val">340 tCO2e</span>
+                        </div>
+                        <div class="h-3 w-full bg-gray-950 rounded-full overflow-hidden border border-white/5">
+                            <div class="h-full bg-cyan-500 rounded-full transition-all duration-300" id="scope-2-bar" style="width: 35%"></div>
+                        </div>
+                    </div>
+                    <!-- Scope 3 -->
+                    <div>
+                        <div class="flex justify-between text-xs font-label text-gray-400 mb-1.5">
+                            <span>SCOPE 3 (Value Chain / Supply Chain)</span>
+                            <span class="text-white" id="scope-3-val">1,200 tCO2e</span>
+                        </div>
+                        <div class="h-3 w-full bg-gray-950 rounded-full overflow-hidden border border-white/5">
+                            <div class="h-full bg-violet-500 rounded-full transition-all duration-300" id="scope-3-bar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- Summary Info -->
+                    <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                        <div>
+                            <span class="block text-[10px] font-label text-gray-500 uppercase tracking-wider">Total Carbon Intensity</span>
+                            <span class="text-xl font-display font-bold text-white" id="intensity-val">16.6 tCO2e / $M</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="block text-[10px] font-label text-gray-500 uppercase tracking-wider">Total Est. Footprint</span>
+                            <span class="text-2xl font-display font-black text-emerald-400" id="total-emissions-val">1,660 tCO2e</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-emerald-950/5 to-transparent pointer-events-none rounded-xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PROJECTS GRID & RESEARCH (from file 4) -->
+    <section class="animate-on-scroll space-y-8" id="projects">
+        <h2 class="font-syne text-4xl font-extrabold tracking-tighter mb-12 text-gradient">Featured Projects &amp; Research</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 (M&M) -->
+            <a class="glass-panel rounded-xl overflow-hidden group cursor-pointer flex flex-col" href="https://www.linkedin.com/posts/isgoyal_mm-shubham-goyal-activity-7286665243156533248-pTHP" target="_blank">
+                <div class="relative h-[200px] overflow-hidden bg-gray-900">
+                    <img alt="Mahindra &amp; Mahindra Research" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" src="images/project_mahindra_esg.png"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#030712] to-transparent opacity-80"></div>
+                    <span class="material-symbols-outlined absolute top-4 right-4 text-white/50 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] transition-all">open_in_new</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs font-mono text-primary mb-2 tracking-wider">EQUITY RESEARCH</div>
+                    <h3 class="font-headline text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">Mahindra &amp; Mahindra</h3>
+                    <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">14-page valuation research report formulating EV climate transition impact, macroeconomic variables, corporate governance matrix, and relative multiples models.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10">DCF Analysis</span>
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10">Governance Matrix</span>
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10">EV Risk</span>
+                    </div>
+                </div>
+            </a>
+            <!-- Project 2 (DMart DuPont) -->
+            <a class="glass-panel rounded-xl overflow-hidden group cursor-pointer flex flex-col" href="https://www.linkedin.com/posts/isgoyal_dmart-using-dupont-analysis-activity-7077891958207131649-wjTO" target="_blank">
+                <div class="relative h-[200px] overflow-hidden bg-gray-900">
+                    <img alt="DMart DuPont Analysis" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" src="images/project_dmart_dupont.png"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#030712] to-transparent opacity-80"></div>
+                    <span class="material-symbols-outlined absolute top-4 right-4 text-white/50 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] transition-all">open_in_new</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs font-mono text-primary mb-2 tracking-wider">DUPONT FINANCIAL MODEL</div>
+                    <h3 class="font-headline text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">DMart DuPont Breakdown</h3>
+                    <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">Dissecting ROE trends for Avenue Supermarts (DMart) using DuPont framework to assess core operational drivers: operating margin, efficiency, and leverage.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10">DuPont Model</span>
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10">Avenue Supermarts</span>
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10">Financial Ratios</span>
+                    </div>
+                </div>
+            </a>
+            <!-- Project 3 (DMart Valuation) -->
+            <a class="glass-panel rounded-xl overflow-hidden group cursor-pointer flex flex-col" href="https://www.linkedin.com/posts/isgoyal_financial-modeling-activity-7074624010151485440-wuuK" target="_blank">
+                <div class="relative h-[200px] overflow-hidden bg-gray-900">
+                    <img alt="DMart Valuation" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" src="images/project_dmart_valuation.png"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#030712] to-transparent opacity-80"></div>
+                    <span class="material-symbols-outlined absolute top-4 right-4 text-white/50 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)] transition-all">open_in_new</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="text-xs font-mono text-primary mb-2 tracking-wider">VALUATION MODEL</div>
+                    <h3 class="font-headline text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">DMart Forecast &amp; Valuation</h3>
+                    <p class="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">A fully integrated 3-statement financial forecasting model calculating WACC, terminal growth rates, and DCF scenarios to derive intrinsic share price.</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10">WACC Model</span>
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10">Forecasting</span>
+                        <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10">Relative Valuation</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- BOOKMARKLET & SCRIPT VAULT (from file 4) -->
+    <section class="animate-on-scroll space-y-8" id="vault">
+        <h2 class="font-syne text-4xl font-extrabold tracking-tighter mb-12 text-gradient">Bookmarklet &amp; Script Vault</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <div class="lg:col-span-5 flex flex-col gap-4 justify-center" id="vault-tabs">
+                <div class="glass-panel p-5 rounded-lg flex justify-between items-center cursor-pointer border-l-4 border-l-tertiary bg-white/5 code-editor-btn active" data-script="extractor">
+                    <span class="font-headline font-bold text-white">ESG Table Extractor</span>
+                    <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-tertiary/20 text-tertiary border border-tertiary/30">Bookmarklet</span>
+                </div>
+                <div class="glass-panel p-5 rounded-lg flex justify-between items-center cursor-pointer border-l-4 border-l-transparent hover:border-l-primary transition-all duration-300 code-editor-btn" data-script="keyword">
+                    <span class="font-headline font-bold text-slate-300">SASB Keyword Finder</span>
+                    <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-primary/20 text-primary border border-primary/30">Python Script</span>
+                </div>
+                <div class="glass-panel p-5 rounded-lg flex justify-between items-center cursor-pointer border-l-4 border-l-transparent hover:border-l-secondary transition-all duration-300 code-editor-btn" data-script="macro">
+                    <span class="font-headline font-bold text-slate-300">Capital IQ Cell Sync</span>
+                    <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-secondary/20 text-secondary border border-secondary/30">VBA / Excel Macro</span>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-7 rounded-xl overflow-hidden border border-white/10 bg-[#0d1117] flex flex-col shadow-2xl min-h-[350px]">
+                <div class="bg-[#161b22] px-4 py-3 flex justify-between items-center border-b border-white/5">
+                    <div class="flex items-center gap-3">
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <span class="font-mono text-xs text-slate-400 ml-2" id="vault-filename">esg_extractor.js</span>
+                    </div>
+                    <button class="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded" id="vault-copy-btn">
+                        <span class="material-symbols-outlined text-[16px]">content_copy</span>
+                        <span id="vault-copy-text">Copy Script</span>
+                    </button>
+                </div>
+                <div class="p-6 overflow-x-auto font-mono text-sm leading-relaxed grow bg-[#0d1117] max-h-[350px] overflow-y-auto">
+                    <pre><code class="text-slate-300" id="vault-code-content">javascript:(function(){
+  const tables = document.querySelectorAll('table');
+  let esgData = [];
+  tables.forEach(t => {
+    if(t.innerText.match(/Scope 1|Emissions|Diversity/i)) {
+      const rows = t.querySelectorAll('tr');
+      rows.forEach(r => {
+        const cells = Array.from(r.querySelectorAll('td, th')).map(c => c.innerText.trim());
+        if(cells.length > 0) esgData.push(cells.join('\t'));
+      });
+    }
+  });
+  if(esgData.length > 0) {
+    navigator.clipboard.writeText(esgData.join('\n'));
+    alert('ESG Data copied to clipboard!');
+  } else {
+    console.log('No relevant ESG metrics found.');
+  }
+})();</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFESSIONAL TRAJECTORY TIMELINE (from file 5/index.html) -->
+    <section class="space-y-8 animate-on-scroll" id="experience">
+        <h2 class="font-display text-3xl font-bold text-white flex items-center gap-3">
+            <span class="material-symbols-outlined text-emerald-500">history</span>
+            Trajectory
+        </h2>
+        <div class="relative pl-8 border-l border-white/10 space-y-12 ml-4">
+            <div class="relative">
+                <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-[#030712] border-2 border-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.5)]"></div>
+                <span class="text-sm font-label text-cyan-400 block mb-1">July 2024 - Present</span>
+                <h3 class="text-xl font-bold text-white">ESG Research Analyst</h3>
+                <p class="text-gray-500 text-sm mb-3">S&amp;P Global (Gurugram, India)</p>
+                <ul class="text-gray-400 text-sm max-w-2xl leading-relaxed list-disc list-outside pl-4 space-y-2">
+                    <li>Transitioned from Quess Corp contract to internal full-time role due to 100% adherence to data standards and automation innovation.</li>
+                    <li>Analyzed ESG datasets and financial metrics for 700+ global equities across US, UK, and APAC regions using Capital IQ and Advanced Excel.</li>
+                    <li>Developed "SegMap Engine", an internal prompt-based AI agent using Spark Assist for automated NAICS classifications, saving 5 FTEs of manual effort.</li>
+                    <li>Executed segment analysis enabling backend automation of Scope 1, 2, and 3 GHG emissions computations for institutional ESG clients.</li>
+                    <li>Built "DPM Buddy" AI compliance Q&A chatbot, training and mentoring new hires, leading to a 40% reduction in team query resolution time.</li>
+                </ul>
+            </div>
+            <div class="relative">
+                <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-[#030712] border-2 border-white/20"></div>
+                <span class="text-sm font-label text-gray-500 block mb-1">2021 - 2023</span>
+                <h3 class="text-xl font-bold text-gray-300">Master of Business Administration (MBA) - Finance</h3>
+                <p class="text-gray-500 text-sm mb-2">Maharshi Dayanand University (Gurugram, India)</p>
+                <p class="text-gray-400 text-sm max-w-2xl leading-relaxed">Rigorous studies in corporate finance, investment analysis, and valuation. Developed deep fundamental modeling skills (3-statement, DCF, relative valuation multiples).</p>
+            </div>
+            <div class="relative">
+                <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-[#030712] border-2 border-white/20"></div>
+                <span class="text-sm font-label text-gray-500 block mb-1">2017 - 2020</span>
+                <h3 class="text-xl font-bold text-gray-300">Bachelor of Commerce (B.Com)</h3>
+                <p class="text-gray-500 text-sm mb-2">Maharshi Dayanand University (Rohtak, India)</p>
+                <p class="text-gray-400 text-sm max-w-2xl leading-relaxed">Foundational training in accounting, auditing, commercial law, economics, and business management.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL ARSENAL (from file 6) -->
+    <section class="animate-on-scroll space-y-8" id="arsenal">
+        <div class="text-center mb-16 space-y-4">
+            <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white tracking-[-0.03em]">Technical Arsenal</h2>
+            <p class="font-label text-violet-400 text-sm md:text-base max-w-2xl mx-auto uppercase tracking-widest">
+                <span class="material-symbols-outlined align-middle text-[1.2em] mr-2">memory</span>
+                Capabilities Matrix v2.0
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-panel rounded-xl p-6 flex flex-col gap-6">
+                <div class="flex items-center gap-3 border-b border-white/5 pb-4">
+                    <span class="material-symbols-outlined text-violet-400 text-2xl" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+                    <h3 class="font-headline text-xl font-bold text-white">AI &amp; Automation</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">Agent Orchestration</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">Prompt Engineering</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">AI-Assisted Dev</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">RAG Workflows</span>
+                </div>
+            </div>
+            <div class="glass-panel rounded-xl p-6 flex flex-col gap-6">
+                <div class="flex items-center gap-3 border-b border-white/5 pb-4">
+                    <span class="material-symbols-outlined text-cyan-400 text-2xl" style="font-variation-settings: 'FILL' 1;">monitoring</span>
+                    <h3 class="font-headline text-xl font-bold text-white">Financial Analysis</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">DuPont Analysis</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">DCF Modelling</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">Relative Valuation</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">Equity Research</span>
+                </div>
+            </div>
+            <div class="glass-panel rounded-xl p-6 flex flex-col gap-6">
+                <div class="flex items-center gap-3 border-b border-white/5 pb-4">
+                    <span class="material-symbols-outlined text-emerald-400 text-2xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+                    <h3 class="font-headline text-xl font-bold text-white">ESG &amp; Climate Risk</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">GHG Protocol (1,2,3)</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">SASB / GRI Standards</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">TCFD Frameworks</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">Carbon Mapping</span>
+                </div>
+            </div>
+            <div class="glass-panel rounded-xl p-6 flex flex-col gap-6">
+                <div class="flex items-center gap-3 border-b border-white/5 pb-4">
+                    <span class="material-symbols-outlined text-slate-300 text-2xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
+                    <h3 class="font-headline text-xl font-bold text-white">Platforms &amp; Tools</h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">Advanced Excel</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">Capital IQ</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">Python Scrapers</span>
+                    <span class="tag-pill font-label text-xs text-slate-300 px-3 py-1.5 rounded-full bg-[#030712]/50">Bookmarklets</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / COLLABORATE (from file 6) -->
+    <section class="max-w-4xl mx-auto animate-on-scroll" id="contact">
+        <div class="text-center mb-16 space-y-4">
+            <h2 class="font-display text-4xl md:text-5xl text-white tracking-[-0.03em]">Let's Collaborate</h2>
+            <p class="font-body text-slate-400 text-sm md:text-base max-w-xl mx-auto">
+                Open for strategic partnerships, high-impact research roles, and automation consultations.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <a class="glass-panel rounded-xl p-6 flex items-center gap-5 group cursor-pointer" href="mailto:shubhamgoyal.0027@gmail.com">
+                <div class="contact-icon-wrapper w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-400 bg-gray-900/30">
+                    <span class="material-symbols-outlined text-xl">mail</span>
+                </div>
+                <div>
+                    <p class="font-label text-xs text-slate-500 uppercase tracking-widest mb-1">Email</p>
+                    <p class="font-body text-slate-200 text-sm group-hover:text-white transition-colors">shubhamgoyal.0027@gmail.com</p>
+                </div>
+            </a>
+            <a class="glass-panel rounded-xl p-6 flex items-center gap-5 group cursor-pointer" href="https://linkedin.com/in/isgoyal" target="_blank">
+                <div class="contact-icon-wrapper w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-400 bg-gray-900/30">
+                    <span class="material-symbols-outlined text-xl">link</span>
+                </div>
+                <div>
+                    <p class="font-label text-xs text-slate-500 uppercase tracking-widest mb-1">LinkedIn</p>
+                    <p class="font-body text-slate-200 text-sm group-hover:text-white transition-colors">linkedin.com/in/isgoyal</p>
+                </div>
+            </a>
+            <a class="glass-panel rounded-xl p-6 flex items-center gap-5 group cursor-pointer" href="tel:+919050656846">
+                <div class="contact-icon-wrapper w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-400 bg-gray-900/30">
+                    <span class="material-symbols-outlined text-xl">call</span>
+                </div>
+                <div>
+                    <p class="font-label text-xs text-slate-500 uppercase tracking-widest mb-1">Phone</p>
+                    <p class="font-body text-slate-200 text-sm group-hover:text-white transition-colors">+91-9050656846</p>
+                </div>
+            </a>
+            <div class="glass-panel rounded-xl p-6 flex items-center gap-5 group">
+                <div class="contact-icon-wrapper w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-400 bg-gray-900/30">
+                    <span class="material-symbols-outlined text-xl">location_on</span>
+                </div>
+                <div>
+                    <p class="font-label text-xs text-slate-500 uppercase tracking-widest mb-1">Location</p>
+                    <p class="font-body text-slate-200 text-sm group-hover:text-white transition-colors">Gurugram, Haryana, India</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="w-full py-12 bg-gray-950 border-t border-white/5 relative z-10">
+    <div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
+        <div class="text-lg font-black text-cyan-500 font-display hover:text-cyan-300 transition-colors duration-300 cursor-pointer">S.GOYAL.</div>
+        <div class="font-body text-xs font-light tracking-wide text-gray-500">
+            © 2026 Shubham Goyal • ESG Research &amp; AI Automation Architect
+        </div>
+        <div class="flex gap-6 font-body text-xs font-light tracking-wide">
+            <a class="text-gray-500 hover:text-cyan-400 transition-colors opacity-80 hover:opacity-100" href="https://linkedin.com/in/isgoyal" target="_blank">LinkedIn</a>
+            <a class="text-gray-500 hover:text-cyan-400 transition-colors opacity-80 hover:opacity-100" href="mailto:shubhamgoyal.0027@gmail.com">Email</a>
+            <a class="text-gray-500 hover:text-cyan-400 transition-colors opacity-80 hover:opacity-100" href="#experience">Trajectory</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Interactive Scripts -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Reduced Motion Check
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // --- Mobile Navigation ---
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+        const mobileDropdown = document.getElementById('mobile-menu-dropdown');
+        if (mobileToggle && mobileDropdown) {
+            mobileToggle.addEventListener('click', () => {
+                mobileDropdown.classList.toggle('hidden');
+            });
+            mobileDropdown.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileDropdown.classList.add('hidden');
+                });
+            });
+        }
+
+        // --- Typewriter Effect ---
+        const phrases = ["Python Agents", "GPT-4 & Spark Assist", "Workflow Automations", "ESG Ratios & DCF Models"];
+        let phraseIndex = 0;
+        let letterIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+        const typewriterElement = document.getElementById('typewriter');
+
+        function type() {
+            if (prefersReducedMotion) {
+                typewriterElement.innerText = phrases[0];
+                return;
+            }
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                typewriterElement.innerText = currentPhrase.substring(0, letterIndex - 1);
+                letterIndex--;
+                typeSpeed = 40;
+            } else {
+                typewriterElement.innerText = currentPhrase.substring(0, letterIndex + 1);
+                letterIndex++;
+                typeSpeed = 100;
+            }
+
+            if (!isDeleting && letterIndex === currentPhrase.length) {
+                isDeleting = true;
+                typeSpeed = 2000;
+            } else if (isDeleting && letterIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+            setTimeout(type, typeSpeed);
+        }
+        setTimeout(type, 1000);
+
+        // --- Stat Counter Animation ---
+        const counters = document.querySelectorAll('.stat-number');
+        const countSpeed = 200;
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                if (prefersReducedMotion) {
+                    counter.innerText = counter.getAttribute('data-target');
+                    return;
+                }
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / countSpeed;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+        setTimeout(animateCounters, 500);
+
+        // --- Particle Canvas Background ---
+        const canvas = document.getElementById('particleCanvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            let particles = [];
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.4;
+                    this.vy = (Math.random() - 0.5) * 0.4;
+                    this.radius = Math.random() * 1.5;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(6, 182, 212, 0.2)';
+                    ctx.fill();
+                }
+                update() {
+                    if (prefersReducedMotion) return;
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                    if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                const particleCount = Math.floor((canvas.width * canvas.height) / 18000);
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function drawLines() {
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        if (distance < 120) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(139, 92, 246, ${0.08 - distance/1500})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animateCanvas() {
+                if (!prefersReducedMotion) {
+                    requestAnimationFrame(animateCanvas);
+                }
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                drawLines();
+            }
+
+            initParticles();
+            animateCanvas();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                initParticles();
+                if (prefersReducedMotion) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    for (let i = 0; i < particles.length; i++) {
+                        particles[i].draw();
+                    }
+                    drawLines();
+                }
+            });
+        }
+
+        // --- Career Pivot Swapper ---
+        const pivotData = {
+            automation: {
+                title: "AI Automation Specialist",
+                desc: "Bridging the gap between conceptual AI and operational reality. Specializing in architecting custom autonomous agents, designing resilient data pipelines, and integrating LLMs into existing enterprise workflows to eliminate redundant tasks and accelerate strategic decision-making.",
+                skills: [
+                    { name: "Agent Orchestration (LLMs/RAG)", val: "90%" },
+                    { name: "Workflow Automation & Python Scripting", val: "85%" },
+                    { name: "Data Wrangling & Extraction", val: "95%" }
+                ]
+            },
+            solutions: {
+                title: "AI Solutions Consultant",
+                desc: "Translating corporate needs and strategic objectives into deployment-ready AI architectures. Designing detailed process flowcharts, aligning prompt engineering capabilities with governance requirements, and organizing rapid pilot evaluations to prove operational value.",
+                skills: [
+                    { name: "Process Automation Mapping", val: "90%" },
+                    { name: "Rapid Prototyping & UX Integration", val: "80%" },
+                    { name: "Business Requirement Translation", val: "95%" }
+                ]
+            },
+            esg: {
+                title: "Quantitative ESG Analyst",
+                desc: "Synthesizing fundamental financial analysis with corporate sustainability data. Formulating relative multiples valuations, tracking corporate disclosures against global frameworks (GRI, SASB, TCFD), and calculating greenhouse gas inventories (Scope 1, 2, 3) to support investment choices.",
+                skills: [
+                    { name: "Fundamental Financial Modeling", val: "95%" },
+                    { name: "GHG Protocol Carbon Accounting", val: "90%" },
+                    { name: "Sustainability Disclosures (SASB/GRI)", val: "95%" }
+                ]
+            }
+        };
+
+        const pivotPills = document.querySelectorAll('#pivot-pills button');
+        const pivotTitle = document.getElementById('pivot-title');
+        const pivotDesc = document.getElementById('pivot-desc');
+        const skillNames = [
+            document.getElementById('skill-1-name'),
+            document.getElementById('skill-2-name'),
+            document.getElementById('skill-3-name')
+        ];
+        const skillVals = [
+            document.getElementById('skill-1-val'),
+            document.getElementById('skill-2-val'),
+            document.getElementById('skill-3-val')
+        ];
+        const skillBars = [
+            document.getElementById('skill-1-bar'),
+            document.getElementById('skill-2-bar'),
+            document.getElementById('skill-3-bar')
+        ];
+
+        pivotPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                // Update UI selection state
+                pivotPills.forEach(p => {
+                    p.classList.remove('bg-gradient-to-r', 'from-secondary', 'to-primary', 'text-gray-900', 'font-bold', 'shadow-[0_0_15px_rgba(6,182,212,0.4)]');
+                    p.classList.add('border', 'border-white/20', 'text-gray-400', 'hover:text-white', 'hover:border-white/50');
+                });
+                pill.classList.remove('border', 'border-white/20', 'text-gray-400', 'hover:text-white', 'hover:border-white/50');
+                pill.classList.add('bg-gradient-to-r', 'from-secondary', 'to-primary', 'text-gray-900', 'font-bold', 'shadow-[0_0_15px_rgba(6,182,212,0.4)]');
+
+                const role = pill.getAttribute('data-role');
+                const data = pivotData[role];
+
+                // Smooth text transitions
+                pivotTitle.style.opacity = 0;
+                pivotDesc.style.opacity = 0;
+                setTimeout(() => {
+                    pivotTitle.textContent = data.title;
+                    pivotDesc.textContent = data.desc;
+                    pivotTitle.style.opacity = 1;
+                    pivotDesc.style.opacity = 1;
+                }, 200);
+
+                // Update skill values and progress bars
+                data.skills.forEach((skill, idx) => {
+                    skillNames[idx].textContent = skill.name;
+                    skillVals[idx].textContent = skill.val;
+                    skillBars[idx].style.width = '0%';
+                    setTimeout(() => {
+                        skillBars[idx].style.width = skill.val;
+                    }, 50);
+                });
+            });
+        });
+
+        // --- AI Terminal Sandbox ---
+        const terminalLogs = {
+            segmap: [
+                { type: 'command', text: './run_segmap.sh' },
+                { type: 'info', text: '[INFO] Initializing SegMap Engine v2.4...' },
+                { type: 'data', text: "[DATA] Parsing sector segment text: 'Automated electric utility provider with operations in western US...'" },
+                { type: 'agent', text: '[AGENT] Resolving disclosures & classifications mapping...', loading: true },
+                { type: 'success', text: '[SUCCESS] NAICS industry mapped successfully to Sector 22 (Utilities).' },
+                { type: 'stats', text: '[STATS] Manual bypass: 100% | Saved 5 FTEs of validation time' }
+            ],
+            dpm: [
+                { type: 'command', text: "./ask_dpm_buddy.py --query 'Article 8 vs Article 9 mappings'" },
+                { type: 'info', text: '[INFO] Reading loaded SFDR compliance tables...' },
+                { type: 'agent', text: '[AGENT] Running similarity search on regulatory vectors...', loading: true },
+                { type: 'success', text: '[SUCCESS] Found matching criteria: Article 9 requires explicit sustainable investments.' },
+                { type: 'stats', text: '[STATS] Query resolution time: 0.8s | Internal query reductions: -40%' }
+            ],
+            dupont: [
+                { type: 'command', text: 'python dupont_excel_parser.py --file 10k_report.xlsx' },
+                { type: 'data', text: '[DATA] Streaming raw cells from Excel tables...' },
+                { type: 'agent', text: '[AGENT] Automating WACC and tax rate mappings...', loading: true },
+                { type: 'success', text: '[SUCCESS] Net Income, Equity, Turnover ratio variables extracted.' },
+                { type: 'stats', text: '[STATS] Status: 100% error-free cell-sync extraction' }
+            ]
+        };
+
+        const termContainer = document.getElementById('terminal-content');
+        const termCards = document.querySelectorAll('#agents [data-agent]');
+        let termTyping = false;
+        let termAbort = null;
+
+        function renderTermLine(line) {
+            if (line.type === 'command') {
+                return `<div class="flex gap-2 items-start text-white"><span class="text-primary font-bold">shubhamgoyal@agent-sandbox:~$</span><span>${line.text}</span></div>`;
+            }
+            let colorClass = 'text-slate-400';
+            if (line.type === 'info') colorClass = 'text-slate-500';
+            if (line.type === 'agent') colorClass = 'text-violet-400';
+            if (line.type === 'success') colorClass = 'text-emerald-400 mt-1';
+            if (line.type === 'stats') colorClass = 'text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded inline-block mt-1';
+            
+            let loadCursor = line.loading ? '<span class="animate-pulse">_</span>' : '';
+            return `<div class="${colorClass} ml-4">${line.text} ${loadCursor}</div>`;
+        }
+
+        async function runTermSequence(agentId) {
+            if (termTyping && termAbort) {
+                termAbort.abort();
+            }
+            termTyping = true;
+            termAbort = new AbortController();
+            const signal = termAbort.signal;
+            termContainer.innerHTML = '';
+
+            try {
+                const logs = terminalLogs[agentId];
+                for (let i = 0; i < logs.length; i++) {
+                    if (signal.aborted) throw new Error('Aborted');
+                    const log = logs[i];
+                    termContainer.insertAdjacentHTML('beforeend', renderTermLine(log));
+                    termContainer.scrollTop = termContainer.scrollHeight;
+                    
+                    let delay = log.loading ? 1200 : (log.type === 'command' ? 600 : 400);
+                    if (prefersReducedMotion) delay = 10;
+                    await new Promise((resolve, reject) => {
+                        const timeout = setTimeout(resolve, delay);
+                        signal.addEventListener('abort', () => {
+                            clearTimeout(timeout);
+                            reject(new Error('Aborted'));
+                        });
+                    });
+                }
+                if (!signal.aborted) {
+                    termContainer.insertAdjacentHTML('beforeend', `<div class="flex gap-2 items-start mt-2 text-white"><span class="text-primary font-bold">shubhamgoyal@agent-sandbox:~$</span><span class="animate-pulse">_</span></div>`);
+                    termContainer.scrollTop = termContainer.scrollHeight;
+                }
+            } catch (e) {
+                // Suppress abort errors
+            } finally {
+                if (!signal.aborted) termTyping = false;
+            }
+        }
+
+        termCards.forEach(card => {
+            card.addEventListener('click', () => {
+                termCards.forEach(c => {
+                    c.classList.remove('selected', 'border-l-[3px]', 'border-l-secondary', 'bg-white/[0.02]');
+                    c.classList.add('border-transparent');
+                });
+                card.classList.remove('border-transparent');
+                card.classList.add('selected', 'border-l-[3px]', 'border-l-secondary', 'bg-white/[0.02]');
+                const agent = card.getAttribute('data-agent');
+                runTermSequence(agent);
+            });
+        });
+        runTermSequence('segmap');
+
+        // --- DuPont Formula Lab ---
+        const mSlider = document.getElementById('margin-slider');
+        const tSlider = document.getElementById('turnover-slider');
+        const lSlider = document.getElementById('leverage-slider');
+        const mVal = document.getElementById('margin-val');
+        const tVal = document.getElementById('turnover-val');
+        const lVal = document.getElementById('leverage-val');
+        const nodeM = document.getElementById('node-margin');
+        const nodeT = document.getElementById('node-turnover');
+        const nodeL = document.getElementById('node-leverage');
+        const roeDisplay = document.getElementById('roe-display');
+        const roeNode = document.getElementById('roe-node');
+
+        function updateDuPont() {
+            const m = parseFloat(mSlider.value);
+            const t = parseFloat(tSlider.value);
+            const l = parseFloat(lSlider.value);
+
+            mVal.textContent = m.toFixed(1) + '%';
+            tVal.textContent = t.toFixed(2) + 'x';
+            lVal.textContent = l.toFixed(2) + 'x';
+
+            nodeM.textContent = m.toFixed(1) + '%';
+            nodeT.textContent = t.toFixed(2) + 'x';
+            nodeL.textContent = l.toFixed(2) + 'x';
+
+            const roe = (m / 100) * t * l * 100;
+            roeDisplay.textContent = roe.toFixed(2) + '%';
+
+            mSlider.style.background = `linear-gradient(90deg, #06b6d4 ${(m / 20) * 100}%, #1f2937 ${(m / 20) * 100}%)`;
+            tSlider.style.background = `linear-gradient(90deg, #8b5cf6 ${(t / 5) * 100}%, #1f2937 ${(t / 5) * 100}%)`;
+            lSlider.style.background = `linear-gradient(90deg, #6b7280 ${((l - 1) / 4) * 100}%, #1f2937 ${((l - 1) / 4) * 100}%)`;
+
+            if (roe > 15) {
+                roeDisplay.className = "font-display text-4xl font-extrabold text-emerald-400";
+                roeNode.className = "bg-[#0c111d] border border-emerald-500 rounded-lg px-8 py-6 text-center w-64 z-20 transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)]";
+            } else if (roe >= 10) {
+                roeDisplay.className = "font-display text-4xl font-extrabold text-white";
+                roeNode.className = "bg-[#0c111d] border border-white/20 rounded-lg px-8 py-6 text-center w-64 z-20 transition-all duration-300 hover:scale-105";
+            } else {
+                roeDisplay.className = "font-display text-4xl font-extrabold text-red-400";
+                roeNode.className = "bg-[#0c111d] border border-red-500/50 rounded-lg px-8 py-6 text-center w-64 z-20 transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(239,68,68,0.2)]";
+            }
+        }
+
+        mSlider.addEventListener('input', updateDuPont);
+        tSlider.addEventListener('input', updateDuPont);
+        lSlider.addEventListener('input', updateDuPont);
+        updateDuPont();
+
+        // --- GHG Carbon Estimator ---
+        const cSector = document.getElementById('carbon-sector');
+        const rSlider = document.getElementById('revenue-slider');
+        const rVal = document.getElementById('revenue-val');
+        const s1Val = document.getElementById('scope-1-val');
+        const s2Val = document.getElementById('scope-2-val');
+        const s3Val = document.getElementById('scope-3-val');
+        const s1Bar = document.getElementById('scope-1-bar');
+        const s2Bar = document.getElementById('scope-2-bar');
+        const s3Bar = document.getElementById('scope-3-bar');
+        const intensityVal = document.getElementById('intensity-val');
+        const totalEmissionsVal = document.getElementById('total-emissions-val');
+
+        const sectorFactors = {
+            tech: { s1: 0.5, s2: 2.2, s3: 15.0 },
+            energy: { s1: 45.0, s2: 12.0, s3: 25.0 },
+            mfg: { s1: 15.0, s2: 8.0, s3: 35.0 },
+            retail: { s1: 1.2, s2: 3.5, s3: 28.0 }
+        };
+
+        function updateCarbonEstimates() {
+            const sector = cSector.value;
+            const rev = parseFloat(rSlider.value);
+            const factors = sectorFactors[sector];
+
+            rVal.textContent = '$' + rev + 'M';
+
+            const s1 = factors.s1 * rev;
+            const s2 = factors.s2 * rev;
+            const s3 = factors.s3 * rev;
+            const total = s1 + s2 + s3;
+            const intensity = total / rev;
+
+            s1Val.textContent = Math.ceil(s1).toLocaleString() + ' tCO2e';
+            s2Val.textContent = Math.ceil(s2).toLocaleString() + ' tCO2e';
+            s3Val.textContent = Math.ceil(s3).toLocaleString() + ' tCO2e';
+            totalEmissionsVal.textContent = Math.ceil(total).toLocaleString() + ' tCO2e';
+            intensityVal.textContent = intensity.toFixed(1) + ' tCO2e / $M';
+
+            const maxVal = 50000;
+            s1Bar.style.width = Math.min(100, (s1 / maxVal) * 100) + '%';
+            s2Bar.style.width = Math.min(100, (s2 / maxVal) * 100) + '%';
+            s3Bar.style.width = Math.min(100, (s3 / maxVal) * 100) + '%';
+        }
+
+        cSector.addEventListener('change', updateCarbonEstimates);
+        rSlider.addEventListener('input', updateCarbonEstimates);
+        updateCarbonEstimates();
+
+        // --- Script Vault ---
+        const vaultData = {
+            extractor: {
+                filename: "esg_extractor.js",
+                code: `javascript:(function(){\n  const tables = document.querySelectorAll('table');\n  let esgData = [];\n  tables.forEach(t => {\n    if(t.innerText.match(/Scope 1|Emissions|Diversity/i)) {\n      const rows = t.querySelectorAll('tr');\n      rows.forEach(r => {\n        const cells = Array.from(r.querySelectorAll('td, th')).map(c => c.innerText.trim());\n        if(cells.length > 0) esgData.push(cells.join('\\t'));\n      });\n    }\n  });\n  if(esgData.length > 0) {\n    navigator.clipboard.writeText(esgData.join('\\n'));\n    alert('ESG Data copied to clipboard!');\n  } else {\n    console.log('No relevant ESG metrics found.');\n  }\n})();`
+            },
+            keyword: {
+                filename: "sasb_search.py",
+                code: `import os\nimport re\nimport fitz # PyMuPDF\n\ndef search_sasb_disclosures(pdf_path, keywords):\n    doc = fitz.open(pdf_path)\n    matches = []\n    for page_num in range(len(doc)):\n        text = doc[page_num].get_text()\n        for kw in keywords:\n            if re.search(r'\\b' + kw + r'\\b', text, re.IGNORECASE):\n                matches.append({\n                    "page": page_num + 1,\n                    "keyword": kw,\n                    "snippet": text.strip()[:150] + "..."\n                })\n    return matches\n\n# Run search on S&P disclosures\nkeywords_to_check = ["Scope 1", "GRI", "SASB", "TCFD", "Governance"]\nresults = search_sasb_disclosures("10k_disclosure.pdf", keywords_to_check)\nprint(f"Found {len(results)} framework reference matches.")`
+            },
+            macro: {
+                filename: "capital_iq_sync.vba",
+                code: `Sub CapitalIQ_Sync_Ratios()\n    Dim ws As Worksheet\n    Set ws = ThisWorkbook.Sheets("Ratios_Main")\n    \n    ' Trigger refresh for Capital IQ Excel plugin formulas\n    Dim ciqAddin As Object\n    On Error Resume Next\n    Set ciqAddin = Application.COMAddIns("CapitalIQ.ExcelAddIn").Object\n    On Error GoTo 0\n    \n    If Not ciqAddin Is Nothing Then\n        ciqAddin.RefreshAllFormulas\n        MsgBox "Capital IQ Cell Sync complete!", vbInformation\n    Else\n        MsgBox "Capital IQ plugin not detected. Syncing local cells...", vbWarning\n        ws.Calculate\n    End If\nEnd Sub`
+            }
+        };
+
+        const vaultBtns = document.querySelectorAll('#vault-tabs .code-editor-btn');
+        const vaultFilename = document.getElementById('vault-filename');
+        const vaultCode = document.getElementById('vault-code-content');
+        const vaultCopyBtn = document.getElementById('vault-copy-btn');
+        const vaultCopyText = document.getElementById('vault-copy-text');
+
+        vaultBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                vaultBtns.forEach(b => {
+                    b.classList.remove('active', 'border-l-tertiary', 'border-l-primary', 'border-l-secondary', 'bg-white/5');
+                    b.classList.add('border-l-transparent');
+                });
+                const key = btn.getAttribute('data-script');
+                const borderClass = key === 'extractor' ? 'border-l-tertiary' : (key === 'keyword' ? 'border-l-primary' : 'border-l-secondary');
+                btn.classList.remove('border-l-transparent');
+                btn.classList.add('active', borderClass, 'bg-white/5');
+
+                const data = vaultData[key];
+                vaultFilename.textContent = data.filename;
+                vaultCode.textContent = data.code;
+                
+                vaultCopyText.textContent = "Copy Script";
+                vaultCopyBtn.querySelector('.material-symbols-outlined').textContent = "content_copy";
+            });
+        });
+
+        vaultCopyBtn.addEventListener('click', () => {
+            const activeBtn = document.querySelector('#vault-tabs .code-editor-btn.active');
+            const key = activeBtn.getAttribute('data-script');
+            const data = vaultData[key];
+            
+            navigator.clipboard.writeText(data.code).then(() => {
+                vaultCopyText.textContent = "Copied!";
+                vaultCopyBtn.querySelector('.material-symbols-outlined').textContent = "check";
+                setTimeout(() => {
+                    vaultCopyText.textContent = "Copy Script";
+                    vaultCopyBtn.querySelector('.material-symbols-outlined').textContent = "content_copy";
+                }, 2000);
+            });
+        });
+
+        // --- Nav Link Active Highlighter on Scroll ---
+        const sections = document.querySelectorAll('main > section');
+        const navLinks = {
+            'about': document.getElementById('nav-about'),
+            'pivot': document.getElementById('nav-pivot'),
+            'agents': document.getElementById('nav-agents'),
+            'dupont': document.getElementById('nav-dupont'),
+            'carbon-estimator': document.getElementById('nav-carbon'),
+            'projects': document.getElementById('nav-projects'),
+            'vault': document.getElementById('nav-vault'),
+            'experience': document.getElementById('nav-experience'),
+            'arsenal': document.getElementById('nav-arsenal'),
+            'contact': document.getElementById('nav-contact')
+        };
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            if (pageYOffset < 150) current = 'about';
+
+            Object.keys(navLinks).forEach(key => {
+                if (navLinks[key]) {
+                    navLinks[key].className = "text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded";
+                    if (key === current) {
+                        navLinks[key].className = "text-cyan-500 hover:text-cyan-300 transition-colors duration-300 font-bold border-b-2 border-cyan-500 pb-1";
+                    }
+                }
+            });
+        });
+
+        // --- Intersection Observer for Scroll Animations ---
+        if (!prefersReducedMotion) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.05,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        } else {
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                el.classList.add('is-visible');
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
