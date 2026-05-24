@@ -424,17 +424,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="glass-panel p-6 relative overflow-hidden group cursor-pointer" data-agent="dupont" style="--border-color: #8b5cf6; --glow-color: rgba(139, 92, 246, 0.3);">
+                <div class="glass-panel p-6 relative overflow-hidden group cursor-pointer" data-agent="analyst_ai" style="--border-color: #8b5cf6; --glow-color: rgba(139, 92, 246, 0.3);">
                     <div class="absolute inset-0 bg-gradient-to-r from-tertiary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="relative z-10 flex flex-col gap-3">
                         <div class="flex justify-between items-start">
-                            <h3 class="font-headline font-bold text-xl text-white group-hover:text-tertiary transition-colors">Dupont Excel Parser</h3>
-                            <span class="bg-tertiary/10 text-tertiary border border-tertiary/20 px-2.5 py-1 rounded-full text-xs font-mono tracking-wider">Data Pipeline</span>
+                            <h3 class="font-headline font-bold text-xl text-white group-hover:text-tertiary transition-colors">Analyst AI</h3>
+                            <span class="bg-tertiary/10 text-tertiary border border-tertiary/20 px-2.5 py-1 rounded-full text-xs font-mono tracking-wider">Data Extractor</span>
                         </div>
-                        <p class="font-body text-slate-400 text-sm leading-relaxed">Automated Excel sheet cell extraction for financial ratios mapping.</p>
+                        <p class="font-body text-slate-400 text-sm leading-relaxed">Gemini 2.5 Flash document analyzer and tabular data extractor.</p>
                         <div class="flex items-center gap-2 mt-2">
                             <span class="material-symbols-outlined text-tertiary text-sm">done_all</span>
-                            <span class="font-mono text-tertiary text-xs">100% manual entry bypass</span>
+                            <span class="font-mono text-tertiary text-xs">100% data fidelity | 0 manual steps</span>
                         </div>
                     </div>
                 </div>
@@ -1300,12 +1300,13 @@
                 { type: 'success', text: '[SUCCESS] Found matching criteria: Article 9 requires explicit sustainable investments.' },
                 { type: 'stats', text: '[STATS] Query resolution time: 0.8s | Internal query reductions: -40%' }
             ],
-            dupont: [
-                { type: 'command', text: 'python dupont_excel_parser.py --file 10k_report.xlsx' },
-                { type: 'data', text: '[DATA] Streaming raw cells from Excel tables...' },
-                { type: 'agent', text: '[AGENT] Automating WACC and tax rate mappings...', loading: true },
-                { type: 'success', text: '[SUCCESS] Net Income, Equity, Turnover ratio variables extracted.' },
-                { type: 'stats', text: '[STATS] Status: 100% error-free cell-sync extraction' }
+            analyst_ai: [
+                { type: 'command', text: 'node index.js --file raw_esg_disclosure.pdf --prefix "ESG Analysis"' },
+                { type: 'info', text: '[INFO] Initializing Analyst AI Extractor (Gemini 2.5 Flash)...' },
+                { type: 'data', text: '[DATA] Uploading raw_esg_disclosure.pdf (4.2MB) to Gemini File API...' },
+                { type: 'agent', text: '[AGENT] Applying prompt prefix: "Extract and structure all carbon metrics in markdown tables..."', loading: true },
+                { type: 'success', text: '[SUCCESS] File processed. Rendered 3 structured Markdown tables.' },
+                { type: 'stats', text: '[STATS] Status: 100% data fidelity | 0 manual copy-paste steps' }
             ]
         };
 
