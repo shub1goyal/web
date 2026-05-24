@@ -143,6 +143,47 @@
         }
     }
 
+    /* Client & Freelance Solutions Bento Styling */
+    .glass-card {
+        background: rgba(17, 24, 39, 0.4);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card.glow-cyan:hover {
+        border-color: rgba(6, 182, 212, 0.4);
+        box-shadow: 0 0 30px rgba(6, 182, 212, 0.1);
+        transform: translateY(-4px);
+    }
+
+    .glass-card.glow-violet:hover {
+        border-color: rgba(139, 92, 246, 0.4);
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.1);
+        transform: translateY(-4px);
+    }
+
+    .glass-card.glow-emerald:hover {
+        border-color: rgba(16, 185, 129, 0.4);
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.1);
+        transform: translateY(-4px);
+    }
+
+    .glass-card.glow-indigo:hover {
+        border-color: rgba(99, 102, 241, 0.4);
+        box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
+        transform: translateY(-4px);
+    }
+
+    .glass-card:hover .icon-bounce {
+        animation: bounce-slight 1s ease infinite;
+    }
+
+    @keyframes bounce-slight {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-3px); }
+    }
     </style>
 
 </head>
@@ -166,13 +207,14 @@
 <nav class="fixed top-0 w-full z-50 bg-[#030712]/40 backdrop-blur-xl border-b border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] transition-all duration-300">
     <div class="flex justify-between items-center px-8 h-20 max-w-7xl mx-auto">
         <a class="text-xl font-black tracking-tighter text-cyan-500 hover:text-cyan-300 transition-colors duration-300 font-display" href="#about">S.GOYAL.</a>
-        <div class="hidden md:flex items-center gap-8 font-display font-extrabold tracking-tighter text-sm uppercase">
+        <div class="hidden md:flex items-center gap-5 font-display font-extrabold tracking-tighter text-sm uppercase">
             <a class="text-cyan-500 hover:text-cyan-300 transition-colors duration-300 border-b-2 border-cyan-500 pb-1" href="#about" id="nav-about">About</a>
             <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#pivot" id="nav-pivot">Career Pivot</a>
             <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#agents" id="nav-agents">AI Agents</a>
             <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#dupont" id="nav-dupont">DuPont Lab</a>
             <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#carbon-estimator" id="nav-carbon">Carbon Lab</a>
             <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#projects" id="nav-projects">Projects</a>
+            <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#freelance" id="nav-freelance">Client Work</a>
             <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#vault" id="nav-vault">Script Vault</a>
             <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#experience" id="nav-experience">Experience</a>
             <a class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 px-2 py-1 rounded" href="#arsenal" id="nav-arsenal">Skills</a>
@@ -194,6 +236,7 @@
         <a class="block text-gray-300 hover:text-cyan-400" href="#dupont">DuPont Lab</a>
         <a class="block text-gray-300 hover:text-cyan-400" href="#carbon-estimator">Carbon Lab</a>
         <a class="block text-gray-300 hover:text-cyan-400" href="#projects">Projects</a>
+        <a class="block text-gray-300 hover:text-cyan-400" href="#freelance">Client Work</a>
         <a class="block text-gray-300 hover:text-cyan-400" href="#vault">Script Vault</a>
         <a class="block text-gray-300 hover:text-cyan-400" href="#experience">Experience</a>
         <a class="block text-gray-300 hover:text-cyan-400" href="#arsenal">Skills</a>
@@ -628,6 +671,141 @@
                     </div>
                 </div>
             </a>
+        </div>
+    </section>
+
+    <!-- CLIENT & FREELANCE SOLUTIONS (from Stitch) -->
+    <section class="animate-on-scroll space-y-8" id="freelance">
+        <div class="mb-12 max-w-3xl">
+            <p class="font-label text-primary text-sm uppercase tracking-[0.3em] mb-3">Freelance Systems</p>
+            <h2 class="font-syne text-4xl md:text-5xl font-extrabold tracking-tighter mb-4 text-gradient">
+                Client-ready automation <span class="text-gradient">builds</span>
+            </h2>
+            <p class="font-body text-slate-400 text-lg leading-relaxed mt-4">
+                Engineering bespoke automated systems and analytical tools to accelerate operational efficiency and strategic intelligence.
+            </p>
+        </div>
+        <!-- Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 auto-rows-[minmax(280px,auto)]">
+            <!-- Card 1: AI Content Automation (Large Span) -->
+            <div class="glass-card glow-cyan lg:col-span-7 rounded-xl p-8 flex flex-col justify-between group overflow-hidden relative">
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-[#06b6d4]/5 rounded-full blur-3xl group-hover:bg-[#06b6d4]/10 transition-colors duration-500"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex space-x-3">
+                            <div class="w-12 h-12 rounded-lg bg-[#06b6d4]/10 flex items-center justify-center border border-[#06b6d4]/20 group-hover:border-[#06b6d4]/50 transition-colors">
+                                <span class="material-symbols-outlined text-[#06b6d4] text-2xl icon-bounce">movie_edit</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-lg bg-[#06b6d4]/10 flex items-center justify-center border border-[#06b6d4]/20 group-hover:border-[#06b6d4]/50 transition-colors">
+                                <span class="material-symbols-outlined text-[#06b6d4] text-2xl icon-bounce" style="animation-delay: 0.1s;">mic_external_on</span>
+                            </div>
+                        </div>
+                        <span class="font-label text-[10px] uppercase tracking-widest text-[#06b6d4] bg-[#06b6d4]/10 border border-[#06b6d4]/20 px-2.5 py-1 rounded-full">AI Media Ops</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-white mb-3 group-hover:text-[#06b6d4] transition-colors">AI Content Automation Factory</h3>
+                    <p class="font-body text-gray-400 text-sm leading-relaxed mb-6">
+                        End-to-end automated pipelines for YouTube and podcast creators. Transforming raw media into optimized, publish-ready assets with AI-driven scripting and metadata generation.
+                    </p>
+                    <div class="text-xs font-mono text-slate-500 leading-relaxed mb-6">
+                        Proof base: Viral Content Engine, Shadow Empire, audiobook and podcast automation pipelines.
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-[#06b6d4]/30 transition-colors">Scheduling</span>
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-[#06b6d4]/30 transition-colors">Metadata</span>
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-[#06b6d4]/30 transition-colors">Scripting</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Browser Workflow (Medium Span) -->
+            <div class="glass-card glow-violet lg:col-span-5 rounded-xl p-8 flex flex-col justify-between group overflow-hidden relative">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-[#8b5cf6]/5 rounded-full blur-3xl group-hover:bg-[#8b5cf6]/10 transition-colors duration-500"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex space-x-3">
+                            <div class="w-12 h-12 rounded-lg bg-[#8b5cf6]/10 flex items-center justify-center border border-[#8b5cf6]/20 group-hover:border-[#8b5cf6]/50 transition-colors">
+                                <span class="material-symbols-outlined text-[#8b5cf6] text-2xl icon-bounce">extension</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-lg bg-[#8b5cf6]/10 flex items-center justify-center border border-[#8b5cf6]/20 group-hover:border-[#8b5cf6]/50 transition-colors">
+                                <span class="material-symbols-outlined text-[#8b5cf6] text-2xl icon-bounce" style="animation-delay: 0.1s;">auto_fix_high</span>
+                            </div>
+                        </div>
+                        <span class="font-label text-[10px] uppercase tracking-widest text-[#8b5cf6] bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 px-2.5 py-1 rounded-full">Web Automation</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-white mb-3 group-hover:text-[#8b5cf6] transition-colors">Browser Workflow Automation</h3>
+                    <p class="font-body text-gray-400 text-sm leading-relaxed mb-6">
+                        Custom Chrome extensions engineered to integrate disparate web systems. Specializing in ATS data extraction and resume parsing logic.
+                    </p>
+                    <div class="text-xs font-mono text-slate-500 leading-relaxed mb-6">
+                        Proof base: AutoJob Apply Assistant with ATS detection, resume parsing, local storage, and safety tests.
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-[#8b5cf6]/30 transition-colors">Local Storage</span>
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-[#8b5cf6]/30 transition-colors">Resume Parsing</span>
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-[#8b5cf6]/30 transition-colors">Workflow Tracking</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Advanced Excel (Medium Span) -->
+            <div class="glass-card glow-emerald lg:col-span-5 rounded-xl p-8 flex flex-col justify-between group overflow-hidden relative">
+                <div class="absolute -left-10 -bottom-10 w-48 h-48 bg-[#10b981]/5 rounded-full blur-3xl group-hover:bg-[#10b981]/10 transition-colors duration-500"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex space-x-3">
+                            <div class="w-12 h-12 rounded-lg bg-[#10b981]/10 flex items-center justify-center border border-[#10b981]/20 group-hover:border-[#10b981]/50 transition-colors">
+                                <span class="material-symbols-outlined text-[#10b981] text-2xl icon-bounce">table_chart</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-lg bg-[#10b981]/10 flex items-center justify-center border border-[#10b981]/20 group-hover:border-[#10b981]/50 transition-colors">
+                                <span class="material-symbols-outlined text-[#10b981] text-2xl icon-bounce" style="animation-delay: 0.1s;">eco</span>
+                            </div>
+                        </div>
+                        <span class="font-label text-[10px] uppercase tracking-widest text-[#10b981] bg-[#10b981]/10 border border-[#10b981]/20 px-2.5 py-1 rounded-full">Excel Systems</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-white mb-3 group-hover:text-[#10b981] transition-colors">Advanced Excel &amp; ESG Calculators</h3>
+                    <p class="font-body text-gray-400 text-sm leading-relaxed mb-6">
+                        Robust VBA-powered architectures for dynamic scenario logic. Focused on sustainability tracking and waste calculation frameworks.
+                    </p>
+                    <div class="text-xs font-mono text-slate-500 leading-relaxed mb-6">
+                        Proof base: waste generation and disposal calculator, VBA macros, Name Manager structures, and dynamic Excel models.
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-[#10b981]/30 transition-colors">Macro-Enabled</span>
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-[#10b981]/30 transition-colors">Scenario Logic</span>
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-[#10b981]/30 transition-colors">Dynamic Models</span>
+                </div>
+            </div>
+
+            <!-- Card 4: Financial Research (Large Span) -->
+            <div class="glass-card glow-indigo lg:col-span-7 rounded-xl p-8 flex flex-col justify-between group overflow-hidden relative">
+                <div class="absolute -left-20 -top-20 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl group-hover:bg-indigo-500/10 transition-colors duration-500"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex space-x-3">
+                            <div class="w-12 h-12 rounded-lg bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20 group-hover:border-indigo-500/50 transition-colors">
+                                <span class="material-symbols-outlined text-indigo-400 text-2xl icon-bounce">trending_up</span>
+                            </div>
+                            <div class="w-12 h-12 rounded-lg bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20 group-hover:border-indigo-500/50 transition-colors">
+                                <span class="material-symbols-outlined text-indigo-400 text-2xl icon-bounce" style="animation-delay: 0.1s;">article</span>
+                            </div>
+                        </div>
+                        <span class="font-label text-[10px] uppercase tracking-widest text-indigo-300 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 rounded-full">Research Ops</span>
+                    </div>
+                    <h3 class="font-headline text-2xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors">Financial Research &amp; Market Intelligence</h3>
+                    <p class="font-body text-gray-400 text-sm leading-relaxed mb-6">
+                        Autonomous agentic research workflows distilling complex market data into executive summaries and engaging LinkedIn-ready carousel formats.
+                    </p>
+                    <div class="text-xs font-mono text-slate-500 leading-relaxed mb-6">
+                        Proof base: Mahindra ESG report, DMart DuPont and valuation models, and twice-daily market intelligence workflow.
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-indigo-500/30 transition-colors">LinkedIn Ready</span>
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-indigo-500/30 transition-colors">Market Updates</span>
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 group-hover:border-indigo-500/30 transition-colors">Agentic Research</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1367,6 +1545,7 @@
             'dupont': document.getElementById('nav-dupont'),
             'carbon-estimator': document.getElementById('nav-carbon'),
             'projects': document.getElementById('nav-projects'),
+            'freelance': document.getElementById('nav-freelance'),
             'vault': document.getElementById('nav-vault'),
             'experience': document.getElementById('nav-experience'),
             'arsenal': document.getElementById('nav-arsenal'),
